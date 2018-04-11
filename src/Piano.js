@@ -18,7 +18,7 @@ class Piano extends Component {
     
     this.state = {
       secondsElapsed: 0, 
-      interval: 3000,
+      interval: 6000,
       array_of_chords: ['7','MAJ7', '-7'],
       slider: 3
     }
@@ -154,7 +154,8 @@ class Piano extends Component {
             value={0.5} 
             onChange={(event, newValue)=>{
               console.log(typeof newValue, newValue, Math.floor(newValue*10)/10* 6)
-              this.setState({slider: 6* (Math.floor(10*newValue)/10)})
+              const new_slider = 6 * (Math.floor(10*newValue))/10;
+              this.setState({slider: new_slider, interval: 1000*new_slider})
             }}
           />
         </Options>
