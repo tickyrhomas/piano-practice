@@ -149,7 +149,7 @@ class Piano extends Component {
             />)
           })}
           <span>{this.state.slider}</span>
-          <Slider 
+          {/*<Slider 
             step={0.10} 
             value={0.5} 
             onChange={(event, newValue)=>{
@@ -157,7 +157,7 @@ class Piano extends Component {
               const new_slider = 6 * (Math.floor(10*newValue))/10;
               this.setState({slider: new_slider, interval: 1000*new_slider})
             }}
-          />
+          />*/}
         </Options>
         <KeyDisplay>
           <p>{this.random_key()}</p>   
