@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React, { Component } from 'react'
 import Router from './Router'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 class App extends Component {
   render() {
@@ -11,8 +10,8 @@ class App extends Component {
           <Router />
         </MuiThemeProvider>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
