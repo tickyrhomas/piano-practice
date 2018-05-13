@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {AppBar, Drawer, MenuItem} from 'material-ui'
 import Piano from './Piano'
 import {Link, withRouter} from 'react-router-dom'
@@ -8,10 +9,15 @@ class Main extends Component {
     super(props);
     this.state = {open: false};
     this.toggle_open = this.toggle_open.bind(this)
+    this.menu_item_click = this.menu_item_click.bind(this)
   }
   
   toggle_open() {
     this.setState({open: !this.state.open})
+  }
+  menu_item_click({path}) {
+    this.setState({open: false})
+    this.props.history.push(path)
   }
   
   render() {
@@ -22,38 +28,27 @@ class Main extends Component {
           onLeftIconButtonClick={this.toggle_open}
         />
 
-        <Drawer open={this.state.open}>
-          <MenuItem onClick={this.toggle_open}>Close Drawer!</MenuItem>
-          <MenuItem onClick={()=>{this.props.history.push('/')}}>Home</MenuItem>
+        <Drawer 
+          open={this.state.open}
+          docked={false}
+          onRequestChange={(open) => this.setState({open})}
+        >
+          <AppBar
+            title="Navigation"
+            onLeftIconButtonClick={this.toggle_open}
+          />
+          <MenuItem onClick={()=>{this.menu_item_click({path:'/'})}}>Home</MenuItem>
           <hr/>
-          <MenuItem onClick={()=>{this.props.history.push('/piano')}}>Chord Changer 1.0</MenuItem>
-          <MenuItem onClick={()=>{this.props.history.push('/written')}}>Written</MenuItem>
+          <MenuItem onClick={()=>{this.menu_item_click({path:'/piano'})}}>Chord Changer 1.0</MenuItem>
+          <MenuItem onClick={()=>{this.menu_item_click({path:'/written'})}}>Written</MenuItem>
         </Drawer>  
       </div>
     );
   }
 }
 
-
-
-
-// export default class DrawerSimpleExample extends React.Component {
-
-
-
-//   handleToggle = () => this.setState({open: !this.state.open});
-
-//   render() {
-//     return (
-//       <div>
-//         <RaisedButton
-//           label="Toggle Drawer"
-//           onClick={this.handleToggle}
-//         />
-        
-//       </div>
-//     );
-//   }
-// }
+Main.propTypes = {
+  history: PropTypes.func
+}
 
 export default withRouter(Main);

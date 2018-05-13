@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import styled from 'styled-components'
 import {Card, Slider, Toggle} from 'material-ui'
 
@@ -38,67 +37,67 @@ class Piano extends Component {
   
   choose_chord() {
     const random_number = Math.floor(Math.random() * this.state.array_of_chords.length) // 0 or 1
-    return this.state.array_of_chords[random_number] || '';
+    return this.state.array_of_chords[random_number] || ''
   }
   
   choose_key(letter) {
     let key = letter
     const random_number = Math.floor(Math.random() *2) // 0 or 1
     switch(letter) {
-      case ('A'):
-        //A or A♭
-        if (random_number) {
-          key += flat
-        } else {
-          key = key
-        }
-        break
-        
-      case ('B'):
-        //B or B♭
-        if (random_number) {
-          key += flat
-        } else {
-          key = key
-        }
-        break
-        
-      case ('C'):
-        //C
+    case ('A'):
+      //A or A♭
+      if (random_number) {
+        key += flat
+      } else {
         key = key
-        break
-        
-      case ('D'):
-        //D or D♭
-        if (random_number) {
-          key += flat
-        } else {
-          key = key
-        }
-        break
-        
-      case ('E'):
-        //E or E♭
-        if (random_number) {
-          key += flat
-        } else {
-          key = key
-        }
-        break
-        
-      case ('F'):
-        //F
+      }
+      break
+      
+    case ('B'):
+      //B or B♭
+      if (random_number) {
+        key += flat
+      } else {
         key = key
-        break
-        
-      case ('G'):
-        //G or G♭
-        if (random_number) {
-          key += flat
-        } else {
-          key = key
-        }
-        break
+      }
+      break
+      
+    case ('C'):
+      //C
+      key = key
+      break
+      
+    case ('D'):
+      //D or D♭
+      if (random_number) {
+        key += flat
+      } else {
+        key = key
+      }
+      break
+      
+    case ('E'):
+      //E or E♭
+      if (random_number) {
+        key += flat
+      } else {
+        key = key
+      }
+      break
+      
+    case ('F'):
+      //F
+      key = key
+      break
+      
+    case ('G'):
+      //G or G♭
+      if (random_number) {
+        key += flat
+      } else {
+        key = key
+      }
+      break
     }
     return key
   }
@@ -131,21 +130,21 @@ class Piano extends Component {
     return (
       <Container>
         <Card>
-           <Options>
+          <Options>
             <h1>Options</h1>
             
             {array_of_chords.map((chord_type, index)=>{
               return (
-              <Toggle
-                key={`chord-toggle-${index}`}
-                defaultToggled={true}
-                label={chord_type}
-                labelPosition="right"
-                onToggle={(event, isInputChecked)=>{
-                  console.log(chord_type, isInputChecked)
-                  this.toggleChord(chord_type, isInputChecked);
-                }}
-              />)
+                <Toggle
+                  key={`chord-toggle-${index}`}
+                  defaultToggled={true}
+                  label={chord_type}
+                  labelPosition="right"
+                  onToggle={(event, isInputChecked)=>{
+                    console.log(chord_type, isInputChecked)
+                    this.toggleChord(chord_type, isInputChecked);
+                  }}
+                />)
             })}
             <span>{this.state.slider}</span>
             {/*<Slider 
