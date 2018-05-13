@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import styled from 'styled-components'
-import Toggle from 'material-ui/Toggle'
-import Slider from 'material-ui/Slider'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Card, Slider, Toggle} from 'material-ui'
 
 
 const array_of_keys = ['A','B','C','D','E','F','G']
@@ -132,33 +130,35 @@ class Piano extends Component {
     const seconds = this.state.secondsElapsed
     return (
       <Container>
-        <Options>
-          <h1>Options</h1>
-          
-          {array_of_chords.map((chord_type, index)=>{
-            return (
-            <Toggle
-              key={`chord-toggle-${index}`}
-              defaultToggled={true}
-              label={chord_type}
-              labelPosition="right"
-              onToggle={(event, isInputChecked)=>{
-                console.log(chord_type, isInputChecked)
-                this.toggleChord(chord_type, isInputChecked);
+        <Card>
+           <Options>
+            <h1>Options</h1>
+            
+            {array_of_chords.map((chord_type, index)=>{
+              return (
+              <Toggle
+                key={`chord-toggle-${index}`}
+                defaultToggled={true}
+                label={chord_type}
+                labelPosition="right"
+                onToggle={(event, isInputChecked)=>{
+                  console.log(chord_type, isInputChecked)
+                  this.toggleChord(chord_type, isInputChecked);
+                }}
+              />)
+            })}
+            <span>{this.state.slider}</span>
+            {/*<Slider 
+              step={0.10} 
+              value={0.5} 
+              onChange={(event, newValue)=>{
+                console.log(typeof newValue, newValue, Math.floor(newValue*10)/10* 6)
+                const new_slider = 6 * (Math.floor(10*newValue))/10;
+                this.setState({slider: new_slider, interval: 1000*new_slider})
               }}
-            />)
-          })}
-          <span>{this.state.slider}</span>
-          {/*<Slider 
-            step={0.10} 
-            value={0.5} 
-            onChange={(event, newValue)=>{
-              console.log(typeof newValue, newValue, Math.floor(newValue*10)/10* 6)
-              const new_slider = 6 * (Math.floor(10*newValue))/10;
-              this.setState({slider: new_slider, interval: 1000*new_slider})
-            }}
-          />*/}
-        </Options>
+            />*/}
+          </Options>
+        </Card>
         <KeyDisplay>
           <p>{this.random_key()}</p>   
         </KeyDisplay>
